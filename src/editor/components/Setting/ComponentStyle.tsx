@@ -61,6 +61,8 @@ export function ComponentStyle() {
   }
 
   const handleEditorChange = debounce((value) => {
+    setCss(value);
+
     let css: Record<string, any> = {};
 
     try {
@@ -91,7 +93,7 @@ export function ComponentStyle() {
         ))
       }
       <div className='h-[200px] border-[1px] border-[#ccc] z-10'>
-        <CssEditor value={css} onChange={handleEditorChange}/>
+        <CssEditor value={ css } onChange={handleEditorChange}/>
       </div>
     </Form>
   )
