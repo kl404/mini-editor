@@ -9,12 +9,14 @@ export interface Component {
   desc: string;
   children?: Component[];
   parentId?: number;
+
 }
 
 interface State {
   components: Component[];
   curComponentId?: number | null;
   curComponent: Component | null;
+  mode: 'edit' | 'preview';
 }
 
 interface Action {
@@ -23,6 +25,7 @@ interface Action {
   updateComponentProps: (componentId: number, props: any) => void;
   updateComponentStyles: (componentId: number, styles: CSSProperties, replace?: boolean) => void;
   setCurComponentId: (componentId: number | null) => void;
+  setMode: (mode: State['mode']) => void;
 }
 
 export const useComponetsStore = create<State & Action>(
@@ -35,8 +38,12 @@ export const useComponetsStore = create<State & Action>(
         desc: '页面',
       }
     ],
+    
     curComponentId: null,
     curComponent: null,
+    mode: 'edit',
+setMode: (mode) => set({mode}),
+
     setCurComponentId: (componentId) =>
       set((state) => ({
         curComponentId: componentId,
