@@ -24,6 +24,7 @@ export function EditArea() {
                     name: component.name,
                     ...config.defaultProps,
                     ...component.props,
+                    styles: component.styles,
                 },
                 renderComponents(component.children || [])
             )

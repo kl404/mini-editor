@@ -14,13 +14,13 @@ export function useMaterailDrop(accept: string[], id: number) {
               return;
             }
 
-            const props = componentConfig[item.type].defaultProps;
-            
+            const config = componentConfig[item.type];
+
             addComponent({
                 id: new Date().getTime(),
                 name: item.type,
-                props,
-                desc: componentConfig[item.type].desc
+                desc: config.desc,
+                props: config.defaultProps
             }, id)
         },
         collect: (monitor) => ({
@@ -30,3 +30,4 @@ export function useMaterailDrop(accept: string[], id: number) {
 
     return { canDrop, drop }
 }
+ 
